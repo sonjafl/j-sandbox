@@ -2,8 +2,8 @@ package enteties;
 
 public class person {
 
-	private String name;
-	private String number;
+	public String name;
+	public String number;
 
 	public person(String name, String number) {
 		super();

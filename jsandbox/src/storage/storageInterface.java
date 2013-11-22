@@ -10,10 +10,10 @@ public interface storageInterface {
 	
 	public person findByNumber(String number);
 	
-	public boolean delete(person p);
+	public boolean delete(String name);
 	
 	public person create(String name, String number);
 	
-	public ArrayList<person> showAll();
+	public ArrayList<person> show();
 	
 }
