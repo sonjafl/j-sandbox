@@ -1,19 +1,16 @@
 package input;
 
-
 import java.io.*;
-
-import storage.InMemory;
 import input.InputParser;
 
 public class Input {
-	
+
 	private InputParser parser;
-	
-	
+
 	public InputParser getParser() {
 		return parser;
 	}
+
 	public Input() {
 		parser = new InputParser();
 	}
@@ -28,9 +25,8 @@ public class Input {
 			System.out.println("IO error trying to read your name!");
 			System.exit(1);
 		}
-		ui = ui.toLowerCase();
 		parser.parse(ui);
 	}
-	
-} // end of Input class
+
+}
 

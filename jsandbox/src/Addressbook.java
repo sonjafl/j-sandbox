@@ -1,4 +1,3 @@
-import java.awt.Stroke;
 import java.util.ArrayList;
 
 import entities.person;
@@ -11,11 +10,6 @@ class Addressbook {
 	private InMemory storage;
 	private Input ui;
 	
-	/*
-	public Input getUi() {
-		return ui;
-	}*/
-
 	public Addressbook(){
 		this.storage = new InMemory();
 		this.ui = new Input();
@@ -34,17 +28,17 @@ class Addressbook {
 		if (ui.getParser().isCommandValidated()==true) {
 			System.out.println("start startProcess");
 
-			if (InputParser.Commands.create.name().equals(
+			if (InputParser.Commands.CREATE.name().equals(
 					ui.getParser().getUicommand())) {
 				storage.create(ui.getParser().getUinameornumber(), ui
 						.getParser().getUinumber());
 			}
-			if (InputParser.Commands.delete.name().equals(
+			if (InputParser.Commands.DELETE.name().equals(
 					ui.getParser().getUicommand())) {
 				storage.delete(ui.getParser().getUinameornumber());
 			}
 
-			if (InputParser.Commands.find.name().equals(
+			if (InputParser.Commands.FIND.name().equals(
 					ui.getParser().getUicommand())) {
 				person p = this.storage
 						.find(ui.getParser().getUinameornumber());
@@ -55,7 +49,7 @@ class Addressbook {
 				}
 			}
 
-			if (InputParser.Commands.show.name().equals(
+			if (InputParser.Commands.SHOW.name().equals(
 					ui.getParser().getUicommand())) {
 				ArrayList<person> persons = this.storage.show();
 				for (person p : persons) {

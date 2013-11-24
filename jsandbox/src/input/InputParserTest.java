@@ -6,8 +6,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.person;
-
 public class InputParserTest {
 	
 	InputParser parser;
@@ -19,19 +17,9 @@ public class InputParserTest {
 	@Before
 	public void setUp() throws Exception {
 		parser=new InputParser();
-		//parser2=new InputParser();
-		//parser3=new InputParser();
 		ui1="create sonja 01";
 		ui2="delete sonja";
-		ui3="show";
-		/*uiarray1[0]="create";
-		uiarray1[1]="sonja";
-		uiarray1[2]="01";
-		uiarray2[0]="delete";
-		uiarray2[1]="sonja";
-		uiarray3[0]="show";
-		*/
-		
+		ui3="SHOW";
 	}
 	
 
@@ -42,15 +30,15 @@ public class InputParserTest {
 	@Test
 	public void testParse() {
 		this.parser.parse(ui1);
-		assertEquals("create",this.parser.getUicommand());
+		assertEquals("CREATE",this.parser.getUicommand());
 		assertEquals("sonja",this.parser.getUinameornumber());
 		assertEquals("01",this.parser.getUinumber());
 		this.parser.parse(ui2);
-		assertEquals("delete",this.parser.getUicommand());
+		assertEquals("DELETE",this.parser.getUicommand());
 		assertEquals("sonja",this.parser.getUinameornumber());
 		assertEquals(null,this.parser.getUinumber());
 		this.parser.parse(ui3);
-		assertEquals("show",this.parser.getUicommand());
+		assertEquals("SHOW",this.parser.getUicommand());
 		assertEquals(null,this.parser.getUinameornumber());
 		assertEquals(null,this.parser.getUinumber());
 	}
@@ -58,10 +46,10 @@ public class InputParserTest {
 	@Test
 	public void testValidcommand() {
 		
-		assertEquals(true,this.parser.validcommand("create"));
-		assertEquals(true,this.parser.validcommand("delete"));
-		assertEquals(true,this.parser.validcommand("find"));
-		assertEquals(true,this.parser.validcommand("show"));
+		assertEquals(true,this.parser.validcommand("CREATE"));
+		assertEquals(true,this.parser.validcommand("DELETE"));
+		assertEquals(true,this.parser.validcommand("FIND"));
+		assertEquals(true,this.parser.validcommand("SHOW"));
 		assertEquals(false,this.parser.validcommand("xx"));
 
 }}
