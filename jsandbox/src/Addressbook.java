@@ -1,18 +1,20 @@
+import java.awt.Stroke;
 import java.util.ArrayList;
 
-import enteties.person;
+import entities.person;
 import input.Input;
 import storage.InMemory;
-
+import input.InputParser;
 
 class Addressbook {
 	
 	private InMemory storage;
 	private Input ui;
 	
+	/*
 	public Input getUi() {
 		return ui;
-	}
+	}*/
 
 	public Addressbook(){
 		this.storage = new InMemory();
@@ -25,35 +27,43 @@ class Addressbook {
      }
 	 
 	public void startProcess() {
+
+		this.ui.read();
 		
 		
-		System.out.println("start startProcess");
-		
-		ui.inputparser();
-		
-		if ("create".equals(ui.getUicommand())) {
-			storage.create(ui.getUiname(), ui.getUinumber());
-		}
-		if ("delete".equals(ui.getUicommand())) {
+		if (ui.getParser().isCommandValidated()==true) {
+			System.out.println("start startProcess");
 
-		}
-		if ("edit".equals(ui.getUicommand())) {
-
-		}
-		if ("findbyname".equals(ui.getUicommand())) {
-
-		}
-		if ("findbynumbers".equals(ui.getUicommand())) {
-
-		}
-		if ("show".equals(ui.getUicommand())) {
-			ArrayList<person> persons = storage.show();
-			for (person p : persons){
-				System.out.println(p.toString());
+			if (InputParser.Commands.create.name().equals(
+					ui.getParser().getUicommand())) {
+				storage.create(ui.getParser().getUinameornumber(), ui
+						.getParser().getUinumber());
 			}
-			
-		}
+			if (InputParser.Commands.delete.name().equals(
+					ui.getParser().getUicommand())) {
+				storage.delete(ui.getParser().getUinameornumber());
+			}
 
+			if (InputParser.Commands.find.name().equals(
+					ui.getParser().getUicommand())) {
+				person p = this.storage
+						.find(ui.getParser().getUinameornumber());
+				if (p != null) {
+					System.out.println(p.toString());
+				} else {
+					System.out.println("Name or Number not found");
+				}
+			}
+
+			if (InputParser.Commands.show.name().equals(
+					ui.getParser().getUicommand())) {
+				ArrayList<person> persons = this.storage.show();
+				for (person p : persons) {
+					System.out.println(p.toString());
+				}
+			}
+
+		}
 	}
-	
+
 }

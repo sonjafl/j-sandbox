@@ -1,14 +1,15 @@
 package storage;
 
 import java.util.ArrayList;
-import enteties.person;
+
+import entities.person;
 
 
 public interface storageInterface {
 	
-	public person findByName(String name);
+	public person find(String name);
 	
-	public person findByNumber(String number);
+	//public person findByNumber(String number);
 	
 	public boolean delete(String name);
 	
